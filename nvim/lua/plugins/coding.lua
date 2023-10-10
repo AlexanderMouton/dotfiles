@@ -9,6 +9,7 @@ return {
     'cohama/lexima.vim',
     --auto indent to current level
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    'lervag/vimtex',
     --cmp
     {
         "hrsh7th/nvim-cmp",
