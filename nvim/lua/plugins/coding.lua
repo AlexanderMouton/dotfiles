@@ -1,11 +1,21 @@
 return {
     --git
-    'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
-    'airblade/vim-gitgutter',
+    {
+        'tpope/vim-rhubarb',
+        event = 'VeryLazy'
+    },
+    {
+        'tpope/vim-fugitive',
+        event = 'VeryLazy'
+    },
+    {
+        'airblade/vim-gitgutter',
+        event = 'VeryLazy'
+    },
     --treesitter
     {
         'nvim-treesitter/nvim-treesitter',
+        event = 'VeryLazy',
         opts = function()
             local treesitter = require('nvim-treesitter.configs')
             treesitter.setup {
@@ -16,12 +26,17 @@ return {
     --auto close brackets
     'cohama/lexima.vim',
     --auto indent to current level
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-    'lervag/vimtex',
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        event = 'VeryLazy',
+        main = "ibl",
+        opts = {}
+    },
     --cmp
     {
         "hrsh7th/nvim-cmp",
         version = false, -- last release is way too old
+        event = "VeryLazy",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             'L3MON4D3/LuaSnip',
@@ -46,8 +61,7 @@ return {
                     -- C-b (back) C-f (forward) for snippet placeholder navigation.
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<CR>'] = cmp.mapping.confirm {
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = true,
+                        select = false,
                     },
                     ['<Tab>'] = cmp.mapping(function(fallback)
                         if cmp.visible() then
@@ -68,6 +82,10 @@ return {
                         end
                     end, { 'i', 's' }),
                 }),
+                window = {
+                    completion = cmp.config.window.bordered(),
+                    documentation = cmp.config.window.bordered(),
+                },
                 sources = {
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
@@ -206,16 +224,19 @@ return {
         end,
     },
     --lsp diagnostics
-    { 'onsails/diaglist.nvim' },
+    {
+        'onsails/diaglist.nvim',
+        event = 'VeryLazy'
+    },
     --jupyter notebooks integration
     {
         'dccsillag/magma-nvim',
     },
     {
         'numToStr/Comment.nvim',
+        event = 'VeryLazy',
         opts = {
             -- add any options here
         },
-        lazy = false,
     }
 }
