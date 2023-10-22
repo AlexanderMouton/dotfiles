@@ -83,7 +83,6 @@ return {
             local lspconfig = require('lspconfig')
             local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
             local navic = require("nvim-navic")
-            local opts = { noremap = true, silent = true }
 
             local function lsp_keymap(bufnr)
                 local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -97,10 +96,7 @@ return {
                 vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, bufopts)
                 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
                 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-                vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
-                vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-                vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-                vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+                vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, bufopts)
             end
 
             local lsp_attach = function(client, bufnr)
